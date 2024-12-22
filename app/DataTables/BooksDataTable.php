@@ -22,33 +22,40 @@ class BooksDataTable extends DataTable
             })
             ->rawColumns(['actions']);
     }
-    
+
     public function query(Book $model)
     {
         return $model->newQuery();
     }
-    
 
     public function html()
     {
         return $this->builder()
             ->setTableId('books-table')
             ->columns($this->getColumns())
-            ->minifiedAjax();
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1)
+            ->buttons(
+                'excel',
+                'csv',
+                'pdf',
+                'print',
+                'reset',
+                'reload'
+            );
     }
 
     protected function getColumns()
     {
-        $columns = [
+        return [
             ['data' => 'DT_RowIndex', 'title' => '#', 'orderable' => false, 'searchable' => false],
             ['data' => 'title', 'title' => 'Title'],
             ['data' => 'author', 'title' => 'Author'],
             ['data' => 'status', 'title' => 'Availability'],
             ['data' => 'actions', 'title' => 'Actions', 'orderable' => false, 'searchable' => false]
         ];
-
-
-        return $columns;
     }
 
+  
 }

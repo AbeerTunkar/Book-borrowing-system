@@ -38,12 +38,12 @@
     <!-- DataTable Initialization -->
     <script>
         $(document).ready(function() {
-            console.log('jQuery is working! Version:', $.fn.jquery); // تأكيد تحميل jQuery
+            console.log('jQuery is working! Version:', $.fn.jquery); 
 
             $('#books-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('books.index') }}", // تأكدي أن المسار صحيح
+                ajax: "{{ route('books.index') }}", 
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',

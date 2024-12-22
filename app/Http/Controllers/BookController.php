@@ -10,15 +10,14 @@ class BookController extends Controller
 {
     public function __construct()
     {
-   
         $this->middleware('permission:add books')->only(['create', 'store']);
         $this->middleware('permission:edit books')->only(['edit', 'update']);
     }
 
-    public function index()
+  
+    public function index(BooksDataTable $dataTable)
     {
-        $books = Book::all();
-        return view('books.index', compact('books'));
+        return $dataTable->render('books.index');
     }
 
     public function create()
@@ -51,7 +50,7 @@ class BookController extends Controller
 
     public function exportPdf(Book $book)
     {
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('books.pdf', compact('book'));
+        $pdf = Pdf::loadView('books.pdf', compact('book'));
         return $pdf->download($book->title . '_details.pdf');
     }
 }
